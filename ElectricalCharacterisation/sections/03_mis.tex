@@ -1,0 +1,172 @@
+% =====================================================================
+\section{MIS capacitor: C--V characterization}\label{sec:mis}
+% =====================================================================
+
+\subsection{Expected maximum capacitance (item 1)}\label{sec:mis-cmax}
+We measured the \SI{200}{\micro m}\,$\times$\,\SI{200}{\micro m} capacitor
+(n$^+$ poly-Si / SiO$_2$ / p-Si), so $A=\SI{4.0e-4}{cm^2}$. In accumulation the measured
+capacitance is the oxide capacitance, $C_{max}=C_{ox}=\varepsilon_{ox}A/t_{ox}$. For the target
+thickness $t_{ox}=\SIrange{45}{50}{nm}$ we expect
+\[
+C_{max}=\frac{3.9\times\SI{8.85e-14}{F/cm}\times\SI{4.0e-4}{cm^2}}{t_{ox}}
+\approx\SIrange{27.6}{30.7}{pF}.
+\]
+
+\subsection{High-frequency C--V curve and oxide thickness (items 2--3)}\label{sec:mis-hf}
+\begin{figure}[tbp]
+\centering
+\begin{subfigure}[b]{0.46\linewidth}\centering
+  \includegraphics[width=\linewidth]{mdc_mis_HF_1MHz.jpg}\caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.46\linewidth}\centering
+  \includegraphics[width=\linewidth]{mis_bands.pdf}\caption{}
+\end{subfigure}
+\caption{(a) C--V curve of the MIS capacitor at \SI{1}{MHz}, from inversion to accumulation
+(MDC screenshot of a second sweep; the values in the text come from the data file of the first one).
+(b) Band diagrams of the p-type MIS structure in the three regimes.}
+\label{fig:mis-hf}
+\end{figure}
+The capacitor was measured at \SI{1}{MHz} from inversion to accumulation
+(\SI{+10}{V}$\to$\SI{-10}{V}, step \SI{0.1}{V}), see \cref{fig:mis-hf}a. For a p-type substrate we
+can identify three regimes, with the band diagrams of \cref{fig:mis-hf}b:
+\begin{itemize}
+\item \textbf{Accumulation} ($V_g<V_{FB}\approx\SI{-4.3}{V}$): the negative gate voltage attracts
+holes to the surface (bands bend up). The charge is right at the interface, so $C\approx C_{ox}$.
+\item \textbf{Depletion} ($V_{FB}<V_g<V_T$): holes are pushed away from the surface and a
+depletion region of width $W$ appears. Its capacitance $C_{Si}=\varepsilon_{Si}A/W$ is in series with
+$C_{ox}$ (Eq.~3), so $C$ decreases.
+\item \textbf{Inversion} ($V_g>V_T\approx\SI{-3}{V}$): the bands bend down enough to create a layer
+of electrons at the surface. At \SI{1}{MHz} these electrons are too slow to follow the AC signal,
+$W$ stops growing and $C$ reaches its minimum value $C_{min}$.
+\end{itemize}
+The whole curve is shifted towards negative voltages (the device is already in inversion at
+$V_g=0$), which shows that there is a lot of positive charge in the oxide (\cref{sec:mis-extraction}).
+
+
+
+\textbf{Oxide thickness.} The maximum capacitance is $C_{max}=\SI{30.6}{pF}$ (at \SI{-10}{V}), so
+\[
+t_{ox}=\frac{\varepsilon_{ox}A}{C_{max}}\approx\SI{45}{nm},
+\]
+which is inside the target range. The capacitance is still increasing slightly at \SI{-10}{V}
+(\SI{30.9}{pF} at \SI{-15}{V}), so this value may be slightly overestimated (by less than \SI{1}{nm}).
+
+\textbf{Remark on inversion.} In theory, at high frequency $C$ should stay at $C_{min}$ in inversion.
+Here it increases from \SI{10.4}{pF} to \SI{16.6}{pF} at \SI{+10}{V}. A possible explanation is that,
+because of the large positive oxide charge, the surface around the gate is also inverted and can
+supply electrons to the region under the gate, so part of the inversion layer can still respond.
+
+\subsection{Low frequency, illumination and hysteresis (item 4)}\label{sec:mis-lf}
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mdc_mis_LF_1kHz.jpg}\caption{\SI{1}{kHz}, dark}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mdc_mis_light.jpg}\caption{\SI{1}{MHz}, with light}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mdc_mis_hysteresis.jpg}\caption{\SI{1}{MHz}, $\pm\SI{15}{V}$ loop}
+\end{subfigure}
+\caption{MDC screenshots of the other measurements on the same capacitor.}
+\label{fig:mis-other}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mis_overlay.pdf}\caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mis_invC2.pdf}\caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.325\linewidth}\centering
+  \includegraphics[width=\linewidth]{mis_maserjian.pdf}\caption{}
+\end{subfigure}
+\caption{(a) Comparison of the C--V curves at \SI{1}{MHz} (dark and with light) and at
+\SI{1}{kHz}. (b) $1/C^2$ method on the \SI{1}{MHz} curve. (c) Maserjian function
+$C^{-3}dC/dV_g$ of the \SI{1}{MHz} curve.}
+\label{fig:mis-analysis}
+\end{figure}
+
+\textbf{Low frequency (\SI{1}{kHz}).} In accumulation and depletion the curve is similar to the
+\SI{1}{MHz} one, but in inversion the capacitance goes back up to $C_{ox}$
+(\cref{fig:mis-analysis}a). At \SI{1}{kHz} the electrons of the inversion layer have enough time to
+follow the AC signal, so the charge changes at the surface, like in accumulation, and $C\approx C_{ox}$.
+This is the expected low-frequency behaviour. The small plateau around \SI{-5}{V} could be due to
+interface states, which respond at \SI{1}{kHz} but not at \SI{1}{MHz}. The curve is noisier because the
+measured AC current is much smaller at low frequency.
+
+\textbf{With light (\SI{1}{MHz}).} Light creates electron--hole pairs in the silicon. The electrons
+go to the surface, so the inversion layer is formed and renewed much faster. As a result, the
+capacitance in inversion increases (\SI{19.2}{pF} instead of \SI{16.6}{pF} at \SI{+10}{V}) and the curve
+moves towards the low-frequency one. Accumulation and depletion hardly change, because they involve
+holes (majority carriers). This is why C--V measurements must be done in the dark.
+
+\textbf{Hysteresis.} Sweeping from \SI{+15}{V} to \SI{-15}{V} and back, the two curves do not
+overlap: the curve measured on the way back is shifted by about \SI{-0.66}{V}. This corresponds to
+$\Delta N=C_{ox}|\Delta V|/(qA)\approx\SI{3e11}{cm^{-2}}$ charges that are trapped and released in the
+oxide during the sweep. The shift towards negative voltages after the accumulation part means that
+positive charge (holes) was trapped near the interface. We also observed that $V_{FB}$ changes slightly
+from one measurement to the next (between about \SI{-4.3}{V} and \SI{-4.8}{V}), so the oxide charge is
+not very stable.
+
+\subsection{Extraction of $N_A$, $V_{FB}$ and $N_s$ (item 5)}\label{sec:mis-extraction}
+We used the \SI{1}{MHz} curve with $C_{ox}=\SI{30.6}{pF}$. In each case $N_s$ is calculated from
+Eq.~9, $N_s=C_{ox}(\Phi_{MS}-V_{FB})/(qA)$, with $\Phi_{MS}\approx\SI{-0.92}{V}$ for the n$^+$ poly-Si gate.
+
+\textbf{C$_{min}$--C$_{max}$ method.} With $C_{min}=\SI{10.4}{pF}$, Eq.~3 gives the silicon capacitance
+$C_{Si}=\SI{15.7}{pF}$, i.e.\ $W_{max}=\varepsilon_{Si}A/C_{Si}=\SI{0.26}{\micro m}$. Solving Eq.~5 (by
+iteration, as $N_A$ also appears in the logarithm) gives $N_A=\SI{1.3e16}{cm^{-3}}$. Then the Debye
+length is $L_D=\SI{36}{nm}$ (Eq.~7) and the flat-band capacitance $C_{FB}=\SI{24.2}{pF}$ (Eq.~8).
+Reading the voltage where $C=C_{FB}$ on the curve gives $V_{FB}=\SI{-4.32}{V}$.
+
+\textbf{$1/C^2$ method.} In depletion, $1/C^2$ is a straight line of slope $2/(q\varepsilon_{Si}N_AA^2)$
+(\cref{fig:mis-analysis}b). Fitting the linear part (\SIrange{-3.7}{-3.3}{V}) gives
+$N_A=\SI{1.28e16}{cm^{-3}}$, and the intersection of the line with $1/C_{ox}^2$ gives
+$V_{FB}=\SI{-4.10}{V}$. The result depends a little on the chosen fitting range.
+
+\textbf{Maserjian function (bonus).} The function $Y=C^{-3}dC/dV_g$ (\cref{fig:mis-analysis}c) should
+be flat in depletion, with $|Y|=1/(q\varepsilon_{Si}N_AA^2)$. In our case the flat part is reduced to a
+minimum, which gives $N_A=\SI{1.23e16}{cm^{-3}}$. The point where $Y$ reaches one third of its minimum
+(accumulation side) gives $V_{FB}=\SI{-4.09}{V}$.
+
+\begin{table}[H]
+\centering\small
+\caption{Parameters of the MIS capacitor obtained with the three methods, compared with the values
+given by the MDC software.}
+\label{tab:mis}
+\begin{tabular}{lcccc}
+\toprule
+ & C$_{min}$--C$_{max}$ & $1/C^2$ & Maserjian & MDC software\\
+\midrule
+$N_A$ (\si{cm^{-3}}) & \num{1.32e16} & \num{1.28e16} & \num{1.23e16} & \num{1.35e16}\\
+$V_{FB}$ (V) & $-4.32$ & $-4.10$ & $-4.09$ & $-4.33$\\
+$N_s$ (\si{cm^{-2}}) & \num{1.6e12} & \num{1.5e12} & \num{1.5e12} & \num{1.6e12}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The three methods agree well: $N_A\approx\SI{1.3e16}{cm^{-3}}$ and $V_{FB}$ between \SI{-4.1}{V} and
+\SI{-4.3}{V}. The charge density $N_s\approx\SI{1.5e12}{cm^{-2}}$ is positive and much larger than for a
+good quality thermal oxide (typically \SIrange{e10}{e11}{cm^{-2}}). This charge is responsible for the
+large negative shift of the curve.
+
+\subsection{Pros and cons of the methods (item 6)}\label{sec:mis-methods}
+\begin{table}[H]
+\centering\small
+\caption{Comparison of the extraction methods.}\label{tab:methods}
+\begin{tabularx}{\linewidth}{p{2.4cm}XX}
+\toprule
+Method & Advantages & Drawbacks\\
+\midrule
+C$_{min}$--C$_{max}$ & Simple: only two values of the curve are needed. &
+Depends on a good value of $C_{min}$ (not well defined here, since $C$ rises in inversion);
+assumes a uniform doping.\\
+$1/C^2$ & Uses the whole depletion region; can show if the doping is not uniform. &
+The result depends on the chosen fitting range; the linear region is short here.\\
+Maserjian & No fitting range to choose; $N_A$ and $V_{FB}$ read directly on the plot. &
+Needs a derivative, so it is sensitive to noise; the flat part is not always visible.\\
+\bottomrule
+\end{tabularx}
+\end{table}

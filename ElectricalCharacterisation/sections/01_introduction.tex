@@ -1,0 +1,38 @@
+% =====================================================================
+\section{Introduction}
+% =====================================================================
+
+\paragraph{Motivation and context.}
+After fabrication in the clean room, devices have to be tested electrically to check
+whether the process worked as expected. For this, simple test structures are used, such as
+MIS (metal--insulator--semiconductor) capacitors and p--n junctions. They contain the main
+elements of a MOS transistor (gate oxide, Si/SiO$_2$ interface, doped substrate, junctions)
+but are simple enough to be analysed with basic semiconductor physics.
+Capacitance--voltage (C--V) measurements on an MIS capacitor give the oxide thickness
+$t_{ox}$, the substrate doping $N_A$, the flat-band voltage $V_{FB}$ and the charge density
+$N_s$ at the Si/SiO$_2$ interface. Current--voltage (I--V) measurements on diodes give the
+ideality factor, the series resistance, the leakage current and the breakdown voltage.
+By comparing these values with the targets of the process, we can say which fabrication steps
+went well and which ones should be improved.
+
+\paragraph{Devices.}
+The structures come from the MOSTEC layout made in the CIME Nanotech clean room: a p-type
+Si substrate, a thermal oxide (target thickness \SIrange{45}{50}{nm}) and an n$^+$ poly-Si
+gate for the MIS capacitors. The n$^+$/p diodes exist in two shapes with almost the same area
+($\approx\SI{4e-4}{cm^2}$): a square one (small perimeter) and a rake-shaped one (large
+perimeter). In both cases the top contact is taken with a probe tip and the p substrate
+through the chuck.
+
+\paragraph{Experimental means.}
+The measurements are done on a probe station in a dark box. C--V curves are measured with an
+Agilent E4980A LCR meter controlled by the MDC software, which applies a DC voltage ramp with a
+small AC signal and records the capacitance $C$ and the conductance $G$, at \SI{1}{kHz} or
+\SI{1}{MHz}. I--V curves are measured with a semiconductor parameter analyser (SMU).
+All measurements were done at room temperature (\SI{23}{\celsius}).
+
+\paragraph{Organization of the report.}
+\Cref{sec:diodes} deals with the diodes, \cref{sec:mis} with the MIS capacitor and
+\cref{sec:conclusion} summarizes the results.
+Constants used: $\varepsilon_0=\SI{8.85e-14}{F/cm}$, $\varepsilon_{ox}=3.9\,\varepsilon_0$,
+$\varepsilon_{Si}=11.7\,\varepsilon_0$, $k_BT/q=\SI{26}{mV}$,
+$n_i=\SI{1.45e10}{cm^{-3}}$.

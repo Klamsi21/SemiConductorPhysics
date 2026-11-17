@@ -1,0 +1,101 @@
+% =====================================================================
+\section{Diode characterization: I--V and C--V measurements}\label{sec:diodes}
+% =====================================================================
+% PAGE BUDGET for the whole section: about 3 pages (figures included).
+% Sections 2.1 to 2.5 are written by the I-V group. Section 2.6 (C-V) is written by us.
+
+\subsection{Experimental setup and current resolution}\label{sec:iv-setup}
+\placeholder{Items 1--2 of the lab sheet: description of the SMU setup (connections: n
+contact on top, p contact on chuck; sweep from \SI{+5}{V} to \SI{-20}{V}, step
+\SI{100}{mV}, compliance, integration time). Minimum measurable current: method (e.g.\
+open-circuit measurement with lifted tip, noise floor of the log-scale curve) and value.}
+
+\subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
+\placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
+Identification of the regimes (reverse leakage, generation--recombination at low forward
+bias, diffusion regime with $n\approx1$, series-resistance regime, avalanche) and link
+with the band diagrams. Why log scale is useful (exponential regime appears as a straight
+line; leakage visible over many decades).}
+
+\subsection{Extracted parameters: both modules, with and without light}\label{sec:iv-params}
+\placeholder{Items 4--5: extraction method for $V_{th}$, avalanche voltage $V_{a}$ and
+$R_s$ (e.g.\ $R_s$ from the deviation from the exponential at high current, Eq.~2), and
+reverse current at $-1$ and $-10$~V. Fill in the table below (minimum 4 measurements).}
+
+\begin{table}[H]
+\centering\small
+\caption{Parameters extracted from the I--V curves of the two diode modules.}
+\label{tab:diode-iv}
+\begin{tabular}{lcccccc}
+\toprule
+Module & Light & $V_{th}$ (V) & $V_a$ (V) & $R_s$ (\si{\ohm}) & $I_R(-1\,\mathrm V)$ (A) & $I_R(-10\,\mathrm V)$ (A)\\
+\midrule
+Square & dark & & & & & \\
+Square & light & & & & & \\
+Rake   & dark & & & & & \\
+Rake   & light & & & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ideality factor}\label{sec:iv-n}
+\placeholder{Item 6: dedicated measurement (fine voltage step in the
+\SIrange{0.1}{0.6}{V} range, log scale), extraction of $n$ from the slope
+$q/(n k_B T)$ of $\ln I$ vs $V$, explanation of the approach.}
+
+\subsection{Discussion}\label{sec:iv-discussion}
+\placeholder{Item 7: dependence of the reverse current on light ($i_{ph}$) and on the
+junction shape (area vs perimeter: rake vs square), values of $R_s$ and $n$, comparison
+with an ideal diode.}
+
+% ---------------------------------------------------------------------
+\subsection{C--V characteristic of the junction (item 8)}\label{sec:diode-cv}
+% ---------------------------------------------------------------------
+\textbf{Setup.} The C--V curve was measured at \SI{1}{MHz} on the \tocheck{square / rake}
+diode, with the same setup as the MIS capacitor, from 0 to \SI{+15}{V} on the n contact
+(step \SI{0.1}{V}). As the p substrate is on the chuck, a positive voltage on the n side
+means \emph{reverse} bias: almost no current flows and we measure the capacitance of the
+space-charge region (SCR). We did not use forward bias, because the current would be too large
+to measure a meaningful capacitance.
+
+\textbf{Result.} The capacitance decreases from \SI{30.1}{pF} at \SI{0}{V} to \SI{7.6}{pF} at
+\SI{15}{V} (\cref{fig:diode-cv}a): when the reverse bias increases, the SCR becomes wider
+($W=\varepsilon_{Si}A/C$ goes from \SIrange{0.14}{0.55}{\micro m}, with
+$A=\SI{4.0e-4}{cm^2}$). For an n$^+$/p junction, almost all the SCR is on the p side and
+\begin{equation}
+\frac{1}{C^2}=\frac{2\,(V_{bi}+V_R)}{q\,\varepsilon_{Si}\,N_A\,A^2},
+\label{eq:diode-cv}
+\end{equation}
+so the slope of $1/C^2$ versus $V_R$ gives the substrate doping $N_A$ and the intersection
+with the voltage axis gives the built-in voltage $V_{bi}$ (same idea as the $1/C^2$ method of
+\cref{sec:mis-extraction}). The parameters shown by MDC on this curve are not relevant, since the
+software uses an MIS model.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.42\linewidth}\centering
+  \includegraphics[width=\linewidth]{mdc_diode_CV.jpg}\caption{}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.40\linewidth}\centering
+  \includegraphics[width=\linewidth]{diode_invC2.pdf}\caption{}
+\end{subfigure}
+\caption{(a) C--V curve of the n$^+$/p junction at \SI{1}{MHz} in reverse bias (MDC).
+(b) $1/C^2$ as a function of the reverse bias: raw data (black) and after subtraction of a
+parasitic capacitance $C_p=\SI{1.5}{pF}$ (red), with linear fits between 2 and \SI{15}{V}.}
+\label{fig:diode-cv}
+\end{figure}
+
+\textbf{Extraction.} The raw $1/C^2$ curve is not perfectly straight. A linear fit gives
+$N_A\approx\SI{7e16}{cm^{-3}}$ but $V_{bi}\approx\SI{1.7}{V}$, which is not possible (it should be
+below \SI{1.1}{V}). We think that a small parasitic capacitance $C_p$ (contact pad and cables) is
+measured in parallel with the junction. Its effect is larger when $C$ becomes small, which bends the
+curve. Removing $C_p\approx\SI{1.5}{pF}$ makes the curve linear and gives
+$N_A\approx\SI{4.4e16}{cm^{-3}}$ and $V_{bi}\approx\SI{0.83}{V}$, a reasonable value
+(about \SI{0.9}{V} expected for an n$^+$/p junction with this doping). So this correction is
+necessary (bonus question).
+
+The doping is about 3 times higher than the one obtained with the MIS capacitor
+(\SI{1.3e16}{cm^{-3}}, \cref{sec:mis-extraction}). A possible reason is that the real junction area
+is larger than the drawn area, because the junction also extends on the sides of the n region;
+since $N_A\propto1/A^2$, a small error on $A$ has a large effect. Comparing the square and rake
+diodes would allow to check this.

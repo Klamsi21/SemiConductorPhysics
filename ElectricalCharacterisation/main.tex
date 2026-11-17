@@ -1,75 +1,84 @@
-\documentclass[10pt,a4paper]{report}
-\usepackage{graphicx}
-\usepackage{siunitx}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{booktabs}
+% =====================================================================
+%  TP CIME -- Electrical characterization lab (UGA, 2025)
+%  MIS & diode test structures
+%  Page limit: 10 pages, cover page and figures INCLUDED.
+%  Suggested budget: cover 1 | intro 1 | diodes (I-V + C-V) 3 | MIS 4 | conclusion 0.5-1
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
 
-\title{Report Electrical Characterization}
-\author{Paul Saß}
-\date{November 2026}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,multirow}
+\usepackage[separate-uncertainty=true,per-mode=symbol]{siunitx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+\usepackage{titlesec}
+\usepackage{setspace}
+
+% ---------- layout: more air ----------
+\setstretch{1.08}                          % line spacing
+\setlength{\parskip}{7pt plus 2pt}         % space between paragraphs
+\setlength{\parindent}{0pt}
+\setlist{itemsep=3pt,topsep=4pt,leftmargin=1.5em}
+\titlespacing*{\section}{0pt}{18pt plus 4pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt plus 3pt}{5pt}
+\titleformat{\section}{\Large\bfseries\color{black!85}}{\thesection}{0.8em}{}[\vspace{-4pt}\rule{\linewidth}{0.4pt}]
+\renewcommand{\arraystretch}{1.3}          % taller table rows
+\setlength{\abovecaptionskip}{6pt}
+\setlength{\belowcaptionskip}{2pt}
+\setlength{\textfloatsep}{16pt plus 4pt}   % space between floats and text
+\setlength{\floatsep}{14pt plus 4pt}
+\setlength{\intextsep}{14pt plus 4pt}
+\captionsetup{width=0.92\linewidth}
+\graphicspath{{figures/}}
+
+% ---------- placeholder for the part written by the other group ----------
+\newcommand{\placeholder}[1]{%
+  \par\noindent\fcolorbox{orange!80!black}{orange!8}{%
+  \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small
+  \textbf{\textcolor{orange!70!black}{[TO BE COMPLETED -- diode I--V group]}} #1}}\par\smallskip}
+% small inline marker for values still to be checked by us
+\newcommand{\tocheck}[1]{\textcolor{red}{[#1]}}
 
 \begin{document}
 
+% ============================== COVER ===============================
+\begin{titlepage}
+  \centering
+  \vspace*{1.5cm}
+  {\large Université Grenoble Alpes -- UFR PhITEM\par}
+  {\large Master 1 Nanophysics \& Quantum Physics -- Semiconductor physics\par}
+  \vspace{2.5cm}
+  \rule{\linewidth}{0.6pt}\\[0.4cm]
+  {\LARGE\bfseries Electrical characterization lab (TP CIME)\par}
+  \vspace{0.3cm}
+  {\Large MIS capacitors and p--n junction test structures:\\ C--V and I--V measurements\par}
+  \rule{\linewidth}{0.6pt}
+  \vspace{2.5cm}
 
-\chapter{Diode Characterization}
+  {\large
+  \textbf{MIS C--V and diode C--V:} Sara Nosti Blanco, \tocheck{partner name}\\[0.2cm]
+  \textbf{Diode I--V:} \tocheck{names of the other group}\par}
+  \vspace{1.5cm}
+  {\large Supervisor: Florent Rochette (CEA)\par}
+  \vfill
+  {\large Lab session: \tocheck{date} \quad -- \quad Report: November 2026\par}
+\end{titlepage}
 
-\section{Introduction}
+\input{sections/01_introduction}
+\input{sections/02_diodes}
+\input{sections/03_mis}
+\input{sections/04_conclusion}
 
-For this part of the practical we want to observe the behavior of a p-n junction. For that we consider two diodes, one small and one large, under light and no light. Both devices have a contact on the top of the wafer with which we close the circuit. The other end of the circuit is on the bottom of the wafer which then leads to our SMU. \\
-From the measurement with no Voltage we obtain that our cable has a leakage of $\SI{4}{\nano \A}$ which is negledgeble considering the current amplitudes used in the mesurements.
-
-
-
-\section{Diodes under light}
-
-First we observe both Diodes under light. For this setup, we leave the wafers exposed to the room light and the light from the microscope. 
-
-
-
-
-\begin{figure}[h!]
-        \centering
-        \includegraphics[width=\textwidth]{assets/task2.2.1_small_light 2.png}
-        \caption{Small diode}\label{fig:small_light}
-\end{figure}
-\begin{figure}[h!]
-        \centering
-        \includegraphics[width=\textwidth]{assets/task2.2.1_small_light 2.png}
-        \caption{Large diode}\label{fig:large_light}
-\end{figure}
-
-\section{Diodes without light}
-
-\section{Comparison}
-\begin{table}[h!]
-        \centering
-        \begin{tabular}{lcccc}
-                \toprule
-                Diode & $V_\mathrm{th}$ [V] & $V_a$ [V] & $I(1\,\mathrm{V})$ [$\mu$A] & $I(10\,\mathrm{V})$ [$\mu$A] \\
-                \midrule
-                Small Light & $-0{,}5$ & $1{,}87$ & $47{,}60$ & $36{,}61$ \\
-                Small       & $-0{,}4$ & $1{,}88$ & $3{,}01$  & $3{,}87$  \\
-                Large Light & $-0{,}6$ & $1{,}86$ & $51{,}14$ & $55{,}46$ \\
-                Large       & $-0{,}5$ & $1{,}87$ & $3{,}93$  & $4{,}31$  \\
-                \bottomrule
-        \end{tabular}
-\end{table}
-
-
-So what we observe
-
-\section{Calculation of the $n$ factor}
-\[
-  S =  - \frac{\ln(1.00434e-5) - \ln(8.526250e-7)}{(-0.5) +0.1} \approx \SI {46,446}{ \frac{1}{\V}}
-\]
-\[
-  V_{\text{thermal}} = \frac{k_B T }{q} \approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V}
-\]
-
-\[
-  n = \frac {1} {(S \cdot V_\text{thermal})} = 0.838
-\]
-\section{C-V Characteristic}
 \end{document}
-
