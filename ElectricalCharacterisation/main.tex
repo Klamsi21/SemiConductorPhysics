@@ -31,14 +31,12 @@ First we observe both Diodes under light. For this setup, we leave the wafers ex
 \begin{figure}[h!]
         \centering
         \includegraphics[width=\textwidth]{assets/task2.2.1_small_light 2.png}
-        \caption{Small diode}
-        \label{fig:small_light}
+        \caption{Small diode}\label{fig:small_light}
 \end{figure}
 \begin{figure}[h!]
         \centering
         \includegraphics[width=\textwidth]{assets/task2.2.1_small_light 2.png}
-        \caption{Large diode}
-        \label{fig:large_light}
+        \caption{Large diode}\label{fig:large_light}
 \end{figure}
 
 \section{Diodes without light}
@@ -62,7 +60,16 @@ First we observe both Diodes under light. For this setup, we leave the wafers ex
 So what we observe
 
 \section{Calculation of the $n$ factor}
+\[
+  S =  - \frac{\ln(1.00434e-5) - \ln(8.526250e-7)}{(-0.5) +0.1} \approx \SI {46,446}{ \frac{1}{\V}}
+\]
+\[
+  V_{\text{thermal}} = \frac{k_B T }{q} \approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V}
+\]
 
+\[
+  n = \frac {1} {(S \cdot V_\text{thermal})} = 0.838
+\]
 \section{C-V Characteristic}
 \end{document}
 
