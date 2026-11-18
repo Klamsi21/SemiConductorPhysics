@@ -10,7 +10,21 @@ contact on top, p contact on chuck; sweep from \SI{+5}{V} to \SI{-20}{V}, step
 \SI{100}{mV}, compliance, integration time). Minimum measurable current: method (e.g.\
 open-circuit measurement with lifted tip, noise floor of the log-scale curve) and value.}
 
-For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark. Both devices have a contact on the top of the wafer, while the other contact is on the bottom of the wafer and is connected to the SMU.
+For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark. 
+Both junctions are set up on a silicon wafer. In this setup the wafer is positioned under a microscope. The SMU is connected through tips on the Cathode side and
+a ground plate from the microscope on the Anode side.\
+For the measurements we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$.
+\begin{figure}[h!]
+  \centering
+  \include{figures/junction.tex}
+  \caption{schematic of the wafer crossection\protect\footnotemark}
+\end{figure}
+
+\footnotetext{AI has been used to help create this figure}
+
+
+
+Both devices have a contact on the top of the wafer, while the other contact is on the bottom of the wafer and is connected to the SMU.
 
 
 \begin{figure}[h!]
@@ -19,8 +33,9 @@ For this part of the practical we observe the behavior of a p-n junction using t
   \caption{Diodes: square (left) and rake (right)}
 \end{figure}
 
-The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$.
+The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$. \\
 
+The wafer defines a minimal measurable current. 
 %=============================================================================
 \subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
 \placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
@@ -107,7 +122,7 @@ with an ideal diode.}
 % ---------------------------------------------------------------------
 \subsection{C--V characteristic of the junction (item 8)}\label{sec:diode-cv}
 % ---------------------------------------------------------------------
-\textbf{Setup.} The C--V curve was measured at \SI{1}{MHz} on the \tocheck{square / rake}
+\textbf{Setup.} The C--V curve was measured at \SI{1}{MHz} on the rake
 diode, with the same setup as the MIS capacitor, from 0 to \SI{+15}{V} on the n contact
 (step \SI{0.1}{V}). As the p substrate is on the chuck, a positive voltage on the n side
 means \emph{reverse} bias: almost no current flows and we measure the capacitance of the
