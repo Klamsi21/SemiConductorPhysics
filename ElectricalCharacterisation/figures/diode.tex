@@ -1,0 +1,46 @@
+
+\begin{tikzpicture}[
+  y=0.6cm,   % <-- hauteur réduite (1 = taille d'origine ; 0.5 = encore plus plat)
+  >={Stealth[length=2.2mm]},
+  declare function={
+    Is  = 0.002;  % saturation current i_s (drawing units)
+    nVT = 0.12;   % n k_B T / q
+    Rs  = 0.45;   % series resistance (horizontal cm per vertical cm)
+    Vb  = 4.0;    % junction voltage at which avalanche sets in
+    Ib  = 0.002;  % avalanche current prefactor
+    nb  = 0.12;   % steepness of the avalanche
+    % current through the junction as a function of the junction voltage V_d
+    id(\v) = Is*(exp(\v/nVT)-1) - Ib*exp(-(\v+Vb)/nb);
+  },
+  lbl/.style={font=\small},
+  regime/.style={font=\small, text=black!55, align=center},
+]
+
+% axes
+\draw[->] (-3.3,0) -- (6.6,0) node[right] {$V_{\mathrm{Pos}}$};
+\draw[->] (0,-3.9) -- (0,2.5) node[above] {$I_{\mathrm{Pos}}$};
+
+
+% real diode: V_a = V_d + R_s i_d  (Eq. 2), plotted as (-V_a, -i_d)
+\draw[thick, blue!70!black, domain=-4.83:0.89, samples=600, variable=\v]
+  plot ({-(\v + Rs*id(\v))}, {-id(\v)});
+
+% forward: linear extrapolation of the high-current part -> V_th, slope 1/R_s
+\draw[dashed, green!50!black] (-0.758,0) -- (-2.473,-3.5);
+\fill[green!50!black] (-0.758,0) circle (1.4pt);
+\node[lbl, green!50!black, above] at (-0.758,0.05) {$V_{\mathrm{th}}$};
+\node[lbl, green!50!black, left] at (-1.85,-1.75) {slope $ s=1/R_s$};
+
+
+% reverse: linear extrapolation of the avalanche branch -> V_av
+\draw[dashed, red!70!black] (4.709,0) -- (5.882,2.3);
+\fill[red!70!black] (4.709,0) circle (1.4pt);
+\node[lbl, red!70!black, below] at (4.709,-0.05) {$V_{\mathrm{a}}$};
+\node[lbl, red!70!black, right] at (5.45,1.35) {};
+
+% regimes
+\node[regime] at (6.0,-0.6) {avalanche};
+\node[regime] at (2.4,-0.6) {reverse bias};
+\node[regime] at (-2.1,0.55) {forward bias};
+
+\end{tikzpicture}

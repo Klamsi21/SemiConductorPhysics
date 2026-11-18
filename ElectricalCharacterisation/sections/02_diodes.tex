@@ -10,6 +10,18 @@ contact on top, p contact on chuck; sweep from \SI{+5}{V} to \SI{-20}{V}, step
 \SI{100}{mV}, compliance, integration time). Minimum measurable current: method (e.g.\
 open-circuit measurement with lifted tip, noise floor of the log-scale curve) and value.}
 
+For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark. Both devices have a contact on the top of the wafer, while the other contact is on the bottom of the wafer and is connected to the SMU.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=.4\textwidth]{diodes_setup.png}
+  \caption{Diodes: square (left) and rake (right)}
+\end{figure}
+
+The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$.
+
+%=============================================================================
 \subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
 \placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
 Identification of the regimes (reverse leakage, generation--recombination at low forward
@@ -17,11 +29,32 @@ bias, diffusion regime with $n\approx1$, series-resistance regime, avalanche) an
 with the band diagrams. Why log scale is useful (exponential regime appears as a straight
 line; leakage visible over many decades).}
 
-\subsection{Extracted parameters: both modules, with and without light}\label{sec:iv-params}
-\placeholder{Items 4--5: extraction method for $V_{th}$, avalanche voltage $V_{a}$ and
-$R_s$ (e.g.\ $R_s$ from the deviation from the exponential at high current, Eq.~2), and
-reverse current at $-1$ and $-10$~V. Fill in the table below (minimum 4 measurements).}
 
+
+
+%=============================================================================
+\subsection{Extracted parameters: both modules, with and without light}\label{sec:iv-params}
+
+In this section we want to mwasure characteristic Values for the p-n diode. These consist of:
+
+\begin{itemize}
+  \item $\mathbf{V_\mathrm{\bf{th}}}$ \bf{thermal voltage:}
+  
+  \item $\mathbf{V_\mathrm{\bf{a}}}$ \bf{avalanche voltage:}
+  
+  \item $\mathbf{R_S}$ \bf{series resistance:}
+
+  \item $\mathbf{I_R}$ \bf{reverse Current:}
+\end{itemize}
+From the measurement with no Voltage we obtain that our cable has a leakage of $\SI{4}{\nano \A}$ which is negledgeble considering the current amplitudes used in the mesurements.
+\begin{figure}[h!]
+  \centering
+  \input{figures/diode.tex}
+  \caption[Extraction of values from diagram]{Extraction of values from diagram.\protect\footnotemark}
+  \label{fig:diode}
+\end{figure}
+
+\footnotetext{AI has been used to help create this figure}
 \begin{table}[H]
 \centering\small
 \caption{Parameters extracted from the I--V curves of the two diode modules.}
@@ -30,19 +63,42 @@ reverse current at $-1$ and $-10$~V. Fill in the table below (minimum 4 measurem
 \toprule
 Module & Light & $V_{th}$ (V) & $V_a$ (V) & $R_s$ (\si{\ohm}) & $I_R(-1\,\mathrm V)$ (A) & $I_R(-10\,\mathrm V)$ (A)\\
 \midrule
-Square & dark & & & & & \\
-Square & light & & & & & \\
-Rake   & dark & & & & & \\
-Rake   & light & & & & & \\
+Square & light & $-0.5$ & $1.87$ & & $47.60$ & $36.61$ \\ 
+Square & dark & $-0.4$ & $1.88$ & & $3.01$  & $3.87$  \\
+Rake   & light & $-0.6$ & $1.86$ & & $51.14$ & $55.46$ \\
+Rake   & dark & $-0.5$ & $1.87$ & & $3.93$  & $4.31$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+%=============================================================================
 \subsection{Ideality factor}\label{sec:iv-n}
-\placeholder{Item 6: dedicated measurement (fine voltage step in the
-\SIrange{0.1}{0.6}{V} range, log scale), extraction of $n$ from the slope
-$q/(n k_B T)$ of $\ln I$ vs $V$, explanation of the approach.}
 
+In this section we want to calculate the ideality factor. This factor is an the factor by which the Voltage has to be increased,
+to achieve the behavior of the ideal diode. In the Boltzmann approximation the relation of the carrier population $n$ is given by:
+
+\[
+  n(E) \propto \exp\left(- \frac {E}{k_B T}\right) = \exp\left(- \frac {V_{\text{bi}} - V}{k_B T}\right) \propto \exp\left(\frac {V}{k_B T}\right)
+\]
+
+Because the ideality factor gives us the multiplier for $V$ we get:
+
+\[
+  I = I_0 \left(\exp\left(\frac {V}{ n k_B T}\right) - 1 \right)
+\]
+
+By now measuring the exponent $S$ by the slope of $I$ in the $\log$-scale, we can calculate $n$:
+
+\begin{align*}
+  S &=  - \frac{\ln(1.00434 \cdot 10 ^{-5}) - \ln(8.526250 \cdot 10 ^{-7})}{(\SI{-0.5}{\V}) +\SI{0.1}{\V}} \approx \SI {6,31}{ \frac{1}{\V}} \\
+  V_{\text{thermal}} &= \frac{k_B T }{q} \approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V} \\
+  n &= \frac {1} {(S \cdot V_\text{thermal})} = 6.17
+\end{align*}
+
+What we observe is a very unexpected value for $n$. Normally we would expect a value between $1$ and $2$.
+Our value isfar out of this range.
+
+%=============================================================================
 \subsection{Discussion}\label{sec:iv-discussion}
 \placeholder{Item 7: dependence of the reverse current on light ($i_{ph}$) and on the
 junction shape (area vs perimeter: rake vs square), values of $R_s$ and $n$, comparison
