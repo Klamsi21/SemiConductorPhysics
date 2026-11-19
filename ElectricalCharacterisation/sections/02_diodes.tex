@@ -10,7 +10,7 @@ contact on top, p contact on chuck; sweep from \SI{+5}{V} to \SI{-20}{V}, step
 \SI{100}{mV}, compliance, integration time). Minimum measurable current: method (e.g.\
 open-circuit measurement with lifted tip, noise floor of the log-scale curve) and value.}
 
-For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark. 
+For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark.
 Both junctions are set up on a silicon wafer. In this setup the wafer is positioned under a microscope. The SMU is connected through tips on the Cathode side and
 a ground plate from the microscope on the Anode side.\
 For the measurements we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$.
@@ -35,7 +35,7 @@ Both devices have a contact on the top of the wafer, while the other contact is 
 
 The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$. \\
 
-The wafer defines a minimal measurable current. 
+The wafer defines a minimal measurable current.
 %=============================================================================
 \subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
 \placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
@@ -44,22 +44,50 @@ bias, diffusion regime with $n\approx1$, series-resistance regime, avalanche) an
 with the band diagrams. Why log scale is useful (exponential regime appears as a straight
 line; leakage visible over many decades).}
 
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_small.png}
+    \caption{square, dark}
+    \label{fig:iv-small-dark}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_small_light.png}
+    \caption{square, light}
+    \label{fig:iv-small-light}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_large.png}
+    \caption{rake, dark}
+    \label{fig:iv-large-dark}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_large_light.png}
+    \caption{rake, light}
+    \label{fig:iv-large-light}
+  \end{subfigure}
+  \caption{I--V characteristics of the diodes in linear (left) and logarithmic (right) scale}
+  \label{fig:iv-all}
+\end{figure}
 
-
-
+\pagebreak
 %=============================================================================
 \subsection{Extracted parameters: both modules, with and without light}\label{sec:iv-params}
 
 In this section we want to mwasure characteristic Values for the p-n diode. These consist of:
 
 \begin{itemize}
-  \item $\mathbf{V_\mathrm{\bf{th}}}$ \bf{thermal voltage:}
-  
-  \item $\mathbf{V_\mathrm{\bf{a}}}$ \bf{avalanche voltage:}
-  
-  \item $\mathbf{R_S}$ \bf{series resistance:}
+  \item $\mathbf{V_\mathrm{\bf{th}}}$ \textbf{threshold voltage:} with rising forward bias, the junction barrier lowers. Below $V_\mathrm{th}$ the diode is fully forward biased and the slope is defined by the series resistance, above $V_\mathrm{th}$ the barrier still blocks most carriers. Therefore $V_\mathrm{th}$ marks the switch of the diode.
+  We measure it by extending the left linear part of the curve to zero.
+  \item $\mathbf{V_\mathrm{\bf{a}}}$ \textbf{avalanche voltage:} this is the voltage at which carriers gain enough kinectic Energy to create new $e^- - h^+$ pairs. They will start a chain reaction. This is the point in the schematic where the current starts rising fastly. We extend the linearity of the rise and extract the root.
 
-  \item $\mathbf{I_R}$ \bf{reverse Current:}
+  \item $\mathbf{R_S}$ \textbf{series resistance:} this is the resistance that describes the ohmic losses outside of the junction. It is the resistance of the quasi neutral $p$- and $n$-type regions. We measure it of the slopes outside of the junction regon in the I--V diagram.
+
+  \item $\mathbf{I_R}$ \textbf{reverse Current:} what we observe is that even in the reverse bias carriers flow through the junction. These are thermally generated minority carriers. We can measure the reverse current, by measuring the current in the junction region of the diagram. 
 \end{itemize}
 From the measurement with no Voltage we obtain that our cable has a leakage of $\SI{4}{\nano \A}$ which is negledgeble considering the current amplitudes used in the mesurements.
 \begin{figure}[h!]
@@ -76,12 +104,12 @@ From the measurement with no Voltage we obtain that our cable has a leakage of $
 \label{tab:diode-iv}
 \begin{tabular}{lcccccc}
 \toprule
-Module & Light & $V_{th}$ (V) & $V_a$ (V) & $R_s$ (\si{\ohm}) & $I_R(-1\,\mathrm V)$ (A) & $I_R(-10\,\mathrm V)$ (A)\\
+Module & Light & $V_{\mathrm{th}}$ (V) & $V_\mathrm{a}$ (V) & $R_\mathrm{S}$ (\si{\ohm}) & $I_\mathrm{R}(-1\,\mathrm V)$ (A) & $I_\mathrm{R}(-10\,\mathrm V)$ (A)\\
 \midrule
-Square & light & $-0.5$ & $1.87$ & & $47.60$ & $36.61$ \\ 
-Square & dark & $-0.4$ & $1.88$ & & $3.01$  & $3.87$  \\
-Rake   & light & $-0.6$ & $1.86$ & & $51.14$ & $55.46$ \\
-Rake   & dark & $-0.5$ & $1.87$ & & $3.93$  & $4.31$ \\
+Square & light & $-0.70$ & $18.70$ & $117.52$ & $47.60$ & $36.61$ \\
+Square & dark & $-0.72$ & $18.79$ & $127.83$ & $3.01$  & $3.87$  \\
+Rake   & light & $-0.66$ & $18.62$ & $126.65$ & $51.14$ & $55.46$ \\
+Rake   & dark & $-0.70$ & $18.71$ & $126.74$ & $3.93$  & $4.31$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -105,13 +133,13 @@ Because the ideality factor gives us the multiplier for $V$ we get:
 By now measuring the exponent $S$ by the slope of $I$ in the $\log$-scale, we can calculate $n$:
 
 \begin{align*}
-  S &=  - \frac{\ln(1.00434 \cdot 10 ^{-5}) - \ln(8.526250 \cdot 10 ^{-7})}{(\SI{-0.5}{\V}) +\SI{0.1}{\V}} \approx \SI {6,31}{ \frac{1}{\V}} \\
-  V_{\text{thermal}} &= \frac{k_B T }{q} \approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V} \\
-  n &= \frac {1} {(S \cdot V_\text{thermal})} = 6.17
+  S &=  - \frac{\ln(\SI{1.004340e-5}) - \ln(\SI{8.526250e-7})}{(\SI{-0.5}{\V}) +\SI{0.1}{\V}}  &&\approx  \SI {6,17}{ \frac{1}{\V}} \\
+  V_{\text{thermal}} &= \frac{k_B T }{q} = \frac{\SI{1.381e-23}{\joule\per\kelvin} \cdot \SI{300}{\kelvin}}{\SI{1.602e-19}{\coulomb}} &&\approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V} \\
+  n &= \frac {1} {S \cdot V_\text{thermal}} = \frac{1}{\SI{6.17}{\per\V} \cdot \SI{0.0257}{\V}} &&\approx 6.32
 \end{align*}
 
 What we observe is a very unexpected value for $n$. Normally we would expect a value between $1$ and $2$.
-Our value isfar out of this range.
+Our value is far out of this range.
 
 %=============================================================================
 \subsection{Discussion}\label{sec:iv-discussion}
