@@ -3,17 +3,14 @@
 % =====================================================================
 % PAGE BUDGET for the whole section: about 3 pages (figures included).
 % Sections 2.1 to 2.5 are written by the I-V group. Section 2.6 (C-V) is written by us.
-
+\subsection{Theoretical Introduction}
 \subsection{Experimental setup and current resolution}\label{sec:iv-setup}
-\placeholder{Items 1--2 of the lab sheet: description of the SMU setup (connections: n
-contact on top, p contact on chuck; sweep from \SI{+5}{V} to \SI{-20}{V}, step
-\SI{100}{mV}, compliance, integration time). Minimum measurable current: method (e.g.\
-open-circuit measurement with lifted tip, noise floor of the log-scale curve) and value.}
+
 
 For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark.
 Both junctions are set up on a silicon wafer. In this setup the wafer is positioned under a microscope. The SMU is connected through tips on the Cathode side and
 a ground plate from the microscope on the Anode side.\
-For the measurements we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$.
+We observed that the forward biased region lies in the negative voltages because the n-type material is on the top side. Because of this, we will use we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$ for the measurements. 
 \begin{figure}[h!]
   \centering
   \include{figures/junction.tex}
@@ -35,7 +32,8 @@ Both devices have a contact on the top of the wafer, while the other contact is 
 
 The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$. \\
 
-The wafer defines a minimal measurable current.
+
+
 %=============================================================================
 \subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
 \placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
@@ -46,33 +44,20 @@ line; leakage visible over many decades).}
 
 \begin{figure}[h!]
   \centering
-  \begin{subfigure}{\textwidth}
     \centering
-    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_small.png}
-    \caption{square, dark}
+    \includegraphics[width=\textwidth]{../analysis/diode/data/plots.pdf}
+    \caption{I--V characteristics of the diodes in linear (left) and logarithmic (right) scale}
     \label{fig:iv-small-dark}
-  \end{subfigure}
-  \begin{subfigure}{\textwidth}
-    \centering
-    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_small_light.png}
-    \caption{square, light}
-    \label{fig:iv-small-light}
-  \end{subfigure}
-  \begin{subfigure}{\textwidth}
-    \centering
-    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_large.png}
-    \caption{rake, dark}
-    \label{fig:iv-large-dark}
-  \end{subfigure}
-  \begin{subfigure}{\textwidth}
-    \centering
-    \includegraphics[width=\textwidth, trim=150 0 190 0, clip]{analysis/diode/data/task2.2.1_large_light.png}
-    \caption{rake, light}
-    \label{fig:iv-large-light}
-  \end{subfigure}
-  \caption{I--V characteristics of the diodes in linear (left) and logarithmic (right) scale}
-  \label{fig:iv-all}
 \end{figure}
+
+The wafer defines a minimal measurable current. We can measure it by extracting the current value on the log plot which is closest to zero. 
+In theory the Current should hit zero exactly which is not the case in our scenario, because we have a resolution.
+
+Extracting this value from the log plot gives us:
+
+\[
+  I_{\mathrm{min}} = \SI{2,0e-8}{A}
+\]
 
 \pagebreak
 %=============================================================================
