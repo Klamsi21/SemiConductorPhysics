@@ -1,0 +1,60 @@
+% Band diagram of the n+/p junction in equilibrium.
+% Energies in drawing units (1 = 1 cm). The p side is fixed, the n side is shifted by the
+% applied voltage: up by qV in forward bias, down by qV_R in reverse bias.
+\begin{tikzpicture}[
+  >={Stealth[length=1.6mm]},
+  font=\small,
+  ec/.style={thick, blue!70!black},
+  ev/.style={thick, red!70!black},
+  ef/.style={dashed, black!70},
+  lvl/.style={font=\footnotesize},
+  carrier/.style={circle, inner sep=0pt, minimum size=4pt},
+  el/.style={carrier, fill=black},
+  ho/.style={carrier, draw=black, fill=white},
+  ttl/.style={font=\small, align=center},
+]
+
+\def\Eg{1.2}    % band gap
+\def\EcP{1.9}   % E_C on the p side (fixed)
+\def\dEF{0.25}  % distance E_C - E_F (n side) and E_F - E_V (p side)
+
+% #1 x offset, #2 shift of the n side (+qV forward, -qV_R reverse, 0 equilibrium),
+% #3 depletion width, #4 barrier label, #5 panel title, #6 height of the barrier label
+\def\W{4.6}    % panel width
+\def\bandpanel#1#2#3#4#5#6{%
+  \begin{scope}[xshift=#1cm]
+    \pgfmathsetmacro\EcN{1.2+#2}
+    \pgfmathsetmacro\EvN{\EcN-\Eg}
+    \pgfmathsetmacro\EvP{\EcP-\Eg}
+    \pgfmathsetmacro\EFn{\EcN-\dEF}
+    \pgfmathsetmacro\EFp{\EvP+\dEF}
+    \pgfmathsetmacro\xa{1.2}
+    \pgfmathsetmacro\xb{1.2+#3}
+    \pgfmathsetmacro\xm{(\xa+\xb)/2}
+    % regions: n, depletion, p
+    \fill[blue!15]   (0,-1.0)   rectangle (\xa,2.5);
+    \fill[yellow!40] (\xa,-1.0) rectangle (\xb,2.5);
+    \fill[red!15]    (\xb,-1.0) rectangle (\W,2.5);
+    \node[font=\footnotesize] at (\xa/2,2.3) {n$^+$};
+    \node[font=\footnotesize] at ({(\xb+\W)/2},2.3) {p};
+    % conduction and valence band
+    \draw[ec] (0,\EcN) -- (\xa,\EcN) .. controls (\xm,\EcN) and (\xm,\EcP) .. (\xb,\EcP) -- (\W,\EcP);
+    \draw[ev] (0,\EvN) -- (\xa,\EvN) .. controls (\xm,\EvN) and (\xm,\EvP) .. (\xb,\EvP) -- (\W,\EvP);
+    % (quasi-)Fermi levels
+    \draw[ef] (0,\EFn) -- (\xb,\EFn);
+    \draw[ef] (\xa,\EFp) -- (\W,\EFp);
+    % barrier for electrons
+    \draw[dotted] (\xa,\EcN) -- (\xb+0.35,\EcN);
+    \draw[<->] (\xb+0.25,\EcN) -- (\xb+0.25,\EcP);
+    \node[lvl, anchor=west] at (\xb+0.3,#6) {#4};
+    \node[ttl, anchor=north] at (\W/2,-1.1) {#5};
+  \end{scope}%
+}
+
+% ---------------------------------------------------------------- equilibrium
+\bandpanel{0}{0}{1.0}{$qV_{bi}$}{}{1.55}
+\node[lvl, left] at (0,1.2) {$E_C$};
+\node[lvl, above] at (3.6,0.95) {$E_F$};
+\node[lvl, left] at (0,0) {$E_V$};
+
+\end{tikzpicture}

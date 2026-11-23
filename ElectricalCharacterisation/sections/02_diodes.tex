@@ -4,44 +4,53 @@
 % PAGE BUDGET for the whole section: about 3 pages (figures included).
 % Sections 2.1 to 2.5 are written by the I-V group. Section 2.6 (C-V) is written by us.
 \subsection{Theoretical Introduction}
+
+\placeholder{}
 \subsection{Experimental setup and current resolution}\label{sec:iv-setup}
 
 
 For this part of the practical we observe the behavior of a p-n junction using two diodes, one square and one rake-shaped, under illumination and in the dark.
-Both junctions are set up on a silicon wafer. In this setup the wafer is positioned under a microscope. The SMU is connected through tips on the Cathode side and
-a ground plate from the microscope on the Anode side.\
-We observed that the forward biased region lies in the negative voltages because the n-type material is on the top side. Because of this, we will use we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$ for the measurements. 
+Both junctions are set up on a silicon wafer. In this setup the wafer is positioned under a microscope. The SMU is connected through tips on the cathode side and
+a ground plate from the microscope on the anode side.
+We observed that the forward biased region lies in the negative voltages because the n-type material is on the top side. Because of this, we use a sweep from $\SI{-5}{\V}$ to $\SI{10}{\V}$ in steps of $\SI{100}{\milli \V}$ for the measurements. 
 \begin{figure}[h!]
   \centering
-  \include{figures/junction.tex}
-  \caption{schematic of the wafer crossection\protect\footnotemark}
+  \begin{subfigure}[b]{0.48\linewidth}
+    \centering
+    \input{figures/junction}
+    \caption{Schematic of the wafer cross-section\protect\footnotemark}
+    \label{fig:junction}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{diodes_setup.png}
+    \caption{Diodes: square (left) and rake (right)}
+    \label{fig:diodes-setup}
+  \end{subfigure}
+  \caption{Measurement setup.}
+  \label{fig:setup}
 \end{figure}
 
 \footnotetext{AI has been used to help create this figure}
 
 
 
-Both devices have a contact on the top of the wafer, while the other contact is on the bottom of the wafer and is connected to the SMU.
+Both devices have a contact on the top of the wafer, while the other contact is on the bottom of the wafer and is connected to the SMU. The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$.
 
+The wafer defines a minimal measurable current. We can measure it by extracting the current value on the log plot which is closest to zero. 
+In theory the current should reach exactly zero, which is not the case in our measurement because of the limited resolution.
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=.4\textwidth]{diodes_setup.png}
-  \caption{Diodes: square (left) and rake (right)}
-\end{figure}
+Extracting this value from the log plot (\cref{fig:iv-small-dark}) gives us:
 
-The square diode has a surface of $\SI{40\,000}{\micro \metre ^2}$ with a perimeter of $\SI{800}{\micro \metre}$ and the rake one $\SI{40\,320}{\micro \metre ^2}$ with a perimeter of $\SI{4072}{\micro \metre}$. \\
-
+\[
+  I_{\mathrm{min}} \approx \SI{2,0e-8}{A}
+\]
 
 
 %=============================================================================
 \subsection{I--V characteristics and operating regimes}\label{sec:iv-regimes}
-\placeholder{Item 3: I--V curves in linear \emph{and} log scale (one figure, two panels).
-Identification of the regimes (reverse leakage, generation--recombination at low forward
-bias, diffusion regime with $n\approx1$, series-resistance regime, avalanche) and link
-with the band diagrams. Why log scale is useful (exponential regime appears as a straight
-line; leakage visible over many decades).}
-
+In this part we will look at the I--V diagrams in more detail. At first, we display the diagrams in linear and log space. The log space is useful because the exponential
+fall can be seen as linear. It also simplifies the identification of the minimal measurable current. From the measurements we get:
 \begin{figure}[h!]
   \centering
     \centering
@@ -50,31 +59,60 @@ line; leakage visible over many decades).}
     \label{fig:iv-small-dark}
 \end{figure}
 
-The wafer defines a minimal measurable current. We can measure it by extracting the current value on the log plot which is closest to zero. 
-In theory the Current should hit zero exactly which is not the case in our scenario, because we have a resolution.
+To explain the regions we first simplify the plot into a schematic. In this schematic we can identify five regions:
 
-Extracting this value from the log plot gives us:
+\begin{itemize}
+  \item \textbf{series resistance:} at high forward bias the barrier $qV_{bi}$ of \cref{fig:diode-bands}
+  is almost gone. The junction does not limit the current. The I--V relation becomes ohmic, i.e.\ linear with the slope $1/R_S$.
+  \item \textbf{diffusion:} the forward bias lowers the barrier to $q(V_{bi}-V)$. Majority carriers can
+  diffuse over it. We see an exponential rise.
+  \item \textbf{generation-recombination:} at small forward bias only a few carriers can cross the barrier.
+  Electrons and holes recombine in states due to the impurity of the crystal. This current rises
+  slowly.
+  \item \textbf{reverse leakage:} the reverse bias raises the barrier to $q(V_{bi}+V_R)$. 
+  Only thermal minority carriers are carried across by the field. This current is the reverse current. This rises under illumination, because more carriers are created.
+  \item \textbf{avalanche:} at large reverse bias the field in the depletion region is strong enough 
+  for carriers to create new $e^-$--$h^+$ pairs by impact ionization. Therefore we get a self-sustaining carrier growth. The current rises strongly.
+\end{itemize}
 
-\[
-  I_{\mathrm{min}} = \SI{2,0e-8}{A}
-\]
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.62\linewidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/diodes_regions}}
+    \caption{Operating regimes}
+    \label{fig:diode-regions}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.34\linewidth}
+    \centering
+    \input{figures/diode_bands}
+    \caption{Band diagram in equilibrium}
+    \label{fig:diode-bands}
+  \end{subfigure}
+  \caption{(a) Operating regimes of the diode. (b) Band diagram of the n$^+$/p junction in
+  equilibrium\protect\footnotemark}
+  \label{fig:diode-regions-bands}
+\end{figure}
 
+\footnotetext{AI has been used to help create these figures}
+
+\placeholder{colnclusion light / no light}
 \pagebreak
 %=============================================================================
 \subsection{Extracted parameters: both modules, with and without light}\label{sec:iv-params}
 
-In this section we want to mwasure characteristic Values for the p-n diode. These consist of:
+In this section we want to measure characteristic values for the p-n diode. These consist of:
 
 \begin{itemize}
   \item $\mathbf{V_\mathrm{\bf{th}}}$ \textbf{threshold voltage:} with rising forward bias, the junction barrier lowers. Below $V_\mathrm{th}$ the diode is fully forward biased and the slope is defined by the series resistance, above $V_\mathrm{th}$ the barrier still blocks most carriers. Therefore $V_\mathrm{th}$ marks the switch of the diode.
   We measure it by extending the left linear part of the curve to zero.
-  \item $\mathbf{V_\mathrm{\bf{a}}}$ \textbf{avalanche voltage:} this is the voltage at which carriers gain enough kinectic Energy to create new $e^- - h^+$ pairs. They will start a chain reaction. This is the point in the schematic where the current starts rising fastly. We extend the linearity of the rise and extract the root.
+  \item $\mathbf{V_\mathrm{\bf{a}}}$ \textbf{avalanche voltage:} this is the voltage at which carriers gain enough kinetic energy to create new $e^- - h^+$ pairs. They will start a chain reaction. This is the point in the schematic where the current starts rising quickly. We extend the linearity of the rise and extract the root.
 
-  \item $\mathbf{R_S}$ \textbf{series resistance:} this is the resistance that describes the ohmic losses outside of the junction. It is the resistance of the quasi neutral $p$- and $n$-type regions. We measure it of the slopes outside of the junction regon in the I--V diagram.
+  \item $\mathbf{R_S}$ \textbf{series resistance:} this is the resistance that describes the ohmic losses outside of the junction. It is the resistance of the quasi-neutral $p$- and $n$-type regions. We measure it from the slope outside of the junction region in the I--V diagram.
 
-  \item $\mathbf{I_R}$ \textbf{reverse Current:} what we observe is that even in the reverse bias carriers flow through the junction. These are thermally generated minority carriers. We can measure the reverse current, by measuring the current in the junction region of the diagram. 
+  \item $\mathbf{I_R}$ \textbf{reverse current:} what we observe is that even in the reverse bias carriers flow through the junction. These are thermally generated minority carriers. We can measure the reverse current by measuring the current in the junction region of the diagram. 
 \end{itemize}
-From the measurement with no Voltage we obtain that our cable has a leakage of $\SI{4}{\nano \A}$ which is negledgeble considering the current amplitudes used in the mesurements.
+From the measurement with no voltage we obtain that our cable has a leakage of $\SI{4}{\nano \A}$ which is negligible considering the current amplitudes used in the measurements.
 \begin{figure}[h!]
   \centering
   \input{figures/diode.tex}
@@ -89,7 +127,7 @@ From the measurement with no Voltage we obtain that our cable has a leakage of $
 \label{tab:diode-iv}
 \begin{tabular}{lcccccc}
 \toprule
-Module & Light & $V_{\mathrm{th}}$ (V) & $V_\mathrm{a}$ (V) & $R_\mathrm{S}$ (\si{\ohm}) & $I_\mathrm{R}(-1\,\mathrm V)$ (A) & $I_\mathrm{R}(-10\,\mathrm V)$ (A)\\
+Module & Light & $V_{\mathrm{th}}$ (V) & $V_\mathrm{a}$ (V) & $R_\mathrm{S}$ (\si{\ohm}) & $I_\mathrm{R}(-1\,\mathrm V)$ ($\si{\micro \A}$) & $I_\mathrm{R}(-10\,\mathrm V)$ ($\si{\micro \A}$)\\
 \midrule
 Square & light & $-0.70$ & $18.70$ & $117.52$ & $47.60$ & $36.61$ \\
 Square & dark & $-0.72$ & $18.79$ & $127.83$ & $3.01$  & $3.87$  \\
@@ -99,10 +137,12 @@ Rake   & dark & $-0.70$ & $18.71$ & $126.74$ & $3.93$  & $4.31$ \\
 \end{tabular}
 \end{table}
 
+\placeholder{conclusion of the table}
+
 %=============================================================================
 \subsection{Ideality factor}\label{sec:iv-n}
 
-In this section we want to calculate the ideality factor. This factor is an the factor by which the Voltage has to be increased,
+In this section we want to calculate the ideality factor. This factor is the factor by which the voltage has to be increased
 to achieve the behavior of the ideal diode. In the Boltzmann approximation the relation of the carrier population $n$ is given by:
 
 \[
@@ -118,9 +158,9 @@ Because the ideality factor gives us the multiplier for $V$ we get:
 By now measuring the exponent $S$ by the slope of $I$ in the $\log$-scale, we can calculate $n$:
 
 \begin{align*}
-  S &=  - \frac{\ln(\SI{1.004340e-5}) - \ln(\SI{8.526250e-7})}{(\SI{-0.5}{\V}) +\SI{0.1}{\V}}  &&\approx  \SI {6,17}{ \frac{1}{\V}} \\
-  V_{\text{thermal}} &= \frac{k_B T }{q} = \frac{\SI{1.381e-23}{\joule\per\kelvin} \cdot \SI{300}{\kelvin}}{\SI{1.602e-19}{\coulomb}} &&\approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V} \\
-  n &= \frac {1} {S \cdot V_\text{thermal}} = \frac{1}{\SI{6.17}{\per\V} \cdot \SI{0.0257}{\V}} &&\approx 6.32
+  S &= \frac{\Delta \ln(I)}{\Delta V}  &&= - \frac{\ln(\SI{1.004340e-5}) - \ln(\SI{8.526250e-7})}{(\SI{-0.5}{\V}) +\SI{0.1}{\V}}  \approx  \SI {6,17}{ \frac{1}{\V}} \\
+  V_{\text{thermal}} &= \frac{k_B T }{q} &&= \frac{\SI{1.381e-23}{\joule\per\kelvin} \cdot \SI{300}{\kelvin}}{\SI{1.602e-19}{\coulomb}} \approx \SI{25,7}{ \milli \V} = \SI {0,0257} {\V} \\
+  n &= \frac {1} {S \cdot V_\text{thermal}} &&= \frac{1}{\SI{6.17}{\per\V} \cdot \SI{0.0257}{\V}} \approx 6.32
 \end{align*}
 
 What we observe is a very unexpected value for $n$. Normally we would expect a value between $1$ and $2$.

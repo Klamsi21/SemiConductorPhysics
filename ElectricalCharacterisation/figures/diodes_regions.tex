@@ -1,0 +1,45 @@
+
+\begin{tikzpicture}[
+  y=0.6cm,   % <-- hauteur réduite (1 = taille d'origine ; 0.5 = encore plus plat)
+  >={Stealth[length=2.2mm]},
+  declare function={
+    Is  = 0.002;  % saturation current i_s (drawing units)
+    nVT = 0.12;   % n k_B T / q
+    Rs  = 0.45;   % series resistance (horizontal cm per vertical cm)
+    Vb  = 4.0;    % junction voltage at which avalanche sets in
+    Ib  = 0.002;  % avalanche current prefactor
+    nb  = 0.12;   % steepness of the avalanche
+    % current through the junction as a function of the junction voltage V_d
+    id(\v) = Is*(exp(\v/nVT)-1) - Ib*exp(-(\v+Vb)/nb);
+  },
+  lbl/.style={font=\small},
+  regime/.style={font=\small, text=black!55, align=center},
+  sep/.style={densely dotted, black!35},
+]
+
+% region boundaries (V_Pos where the curve changes regime)
+\draw[sep] (-0.40,-3.9) -- (-0.40,2.3);   % generation-recombination | diffusion
+\draw[sep] (-0.95,-3.9) -- (-0.95,2.3);   % diffusion | series resistance
+\draw[sep] ( 4.20,-3.9) -- ( 4.20,2.3);   % reverse leakage | avalanche
+
+% axes
+\draw[->] (-3.3,0) -- (6.6,0) node[right] {$V_{\mathrm{Pos}}$};
+\draw[->] (0,-3.9) -- (0,2.5) node[above] {$I_{\mathrm{Pos}}$};
+
+
+% real diode: V_a = V_d + R_s i_d  (Eq. 2), plotted as (-V_a, -i_d)
+\draw[thick, blue!70!black, domain=-4.83:0.89, samples=600, variable=\v]
+  plot ({-(\v + Rs*id(\v))}, {-id(\v)});
+
+% regimes
+\node[regime] at (-2.15,0.9) {series\\resistance};
+\node[regime, rotate=90, anchor=west] at (-0.675,0.2) {diffusion};
+\node[regime, rotate=90, anchor=west] at (-0.20,0.2) {G--R};
+\node[regime] at (2.1,-0.6) {reverse leakage};
+\node[regime] at (5.4,-0.6) {avalanche};
+
+% forward / reverse bias
+\draw[<->, black!55] (-3.3,-4.5) -- (-0.05,-4.5) node[midway, below, regime] {forward bias};
+\draw[<->, black!55] (0.05,-4.5) -- (6.6,-4.5) node[midway, below, regime] {reverse bias};
+
+\end{tikzpicture}
